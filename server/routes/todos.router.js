@@ -29,4 +29,17 @@ router.post('/', (req, res) => {
     }); 
 });
 
+router.delete('/:id', (req, res) => {
+    console.log('line 33 here is the req.body from frontend:', req.body);
+    ToDo.findByIdAndRemove({
+        _id : req.params.id
+    }).then((dataFromMongo) => {
+        console.log('Data returned from Mongo:', dataFromMongo);
+        res.sendStatus(202);
+    }).catch((errFromMongo) => {
+        console.log('line 40 /to-dos DELETE failed. Error:', errFromMongo);
+        res.sendStatus(500);
+    });
+});
+
 module.exports = router;

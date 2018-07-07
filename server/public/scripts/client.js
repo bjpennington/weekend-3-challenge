@@ -41,5 +41,23 @@ app.controller('ToDoController', ['$http', function ($http) {
     self.deleteToDo = function (id) {
         console.log(id);
         console.log('Deleted!');
+        $http({
+            url : `/to-dos/${id}`,
+            method : 'DELETE',
+        }).then(function (res) {
+            console.log(res);
+            self.getToDos();
+        }).catch(function (err) {
+            console.log('DELETE failed. Error:', err);
+        });
+    }
+
+    self.toggleCompleteToDo = function (id) {
+        console.log(id);
+        console.log('toggle complete');
+        // $http({
+        //     url : `/to-dos/${id}`
+        // })
+        
     }
 }]);

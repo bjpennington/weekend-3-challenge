@@ -34,7 +34,7 @@
                 <tbody>
                     <tr ng-repeat="toDo in vm.toDos">
                         <td>
-                            {{toDo.completeStatus}}
+                            <button ng-click="vm.toggleCompleteToDo(toDo._id)">Mark as Complete</button>
                         </td>
                         <td>
                             {{toDo.task}}
