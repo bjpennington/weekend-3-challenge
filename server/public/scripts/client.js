@@ -4,5 +4,7 @@ const app = angular.module('ToDoApp', []);
 
 app.controller('ToDoController', [function () {
     const self = this;
-    self.test = 'Angular up';
+    self.submitToDo = function () {
+        console.log('to do added');
+    }
 }]);
