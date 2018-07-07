@@ -18,8 +18,8 @@
         </header>
         <div>
             <h3>Create New To-Do</h3>
-            <input type="text" placeholder="task description">
-            <button ng-click="vm.submitToDo()">Add It!</button>
+            <input type="text" placeholder="task description" ng-model="vm.newToDo.task">
+            <button ng-click="vm.submitToDo(vm.newToDo)">Add It!</button>
         </div>
         <div>
             <h3>To-Dos</h3>
@@ -31,12 +31,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-repeat="toDo in vm.toDos">
                         <td>
-                            not done
+                            incomplete
                         </td>
                         <td>
-                            rent uHaul
+                            {{toDo.task}}
                         </td>
                     </tr>
                 </tbody>
