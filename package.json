@@ -1,0 +1,27 @@
+{
+  "name": "weekendchallenge3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjpennington/weekend-3-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjpennington/weekend-3-challenge/issues"
+  },
+  "homepage": "https://github.com/bjpennington/weekend-3-challenge#readme",
+  "dependencies": {
+    "angular": "^1.7.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.1"
+  }
+}
