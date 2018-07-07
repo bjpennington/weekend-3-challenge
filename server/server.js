@@ -4,6 +4,8 @@ const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+const toDoRouter = require('./routes/todos.router');
+
 const databaseUrl = 'mongodb://localhost:27017/todolist';
 
 mongoose.connect(databaseUrl);
@@ -20,6 +22,9 @@ app.use(bodyParser.json());
 
 
 app.use(express.static('server/public'));
+
+app.use('/to-dos', toDoRouter);
+
 app.listen(PORT, () => {
     console.log(`App is listening on port ${PORT}`); 
 });
