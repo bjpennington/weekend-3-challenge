@@ -20,7 +20,6 @@ mongoose.connection.on('error', (error) => {
 
 app.use(bodyParser.json());
 
-
 app.use(express.static('server/public'));
 
 app.use('/to-dos', toDoRouter);
