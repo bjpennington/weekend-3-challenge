@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const toDoRouter = require('./routes/todos.router');
+
 
 const databaseUrl = 'mongodb://localhost:27017/todolist';
 
@@ -17,6 +17,8 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (error) => {
     console.log(`Mongoose connection error: ${error}`);
 });
+
+const toDoRouter = require('./routes/todos.router');
 
 app.use(bodyParser.json());
 

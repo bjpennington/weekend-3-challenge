@@ -33,7 +33,7 @@
                 <tbody>
                     <tr ng-repeat="toDo in vm.toDos">
                         <td>
-                            incomplete
+                            {{toDo.completeStatus}}
                         </td>
                         <td>
                             {{toDo.task}}
