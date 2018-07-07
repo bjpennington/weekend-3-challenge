@@ -20,6 +20,8 @@ app.controller('ToDoController', ['$http', function ($http) {
         });
     }
 
+    self.getToDos();
+
 
     self.submitToDo = function (newToDo) {
         console.log('to do added');
@@ -34,5 +36,10 @@ app.controller('ToDoController', ['$http', function ($http) {
         }).catch(function (err) {
             console.log('POST failed. Error:', err);
         });
+    }
+
+    self.deleteToDo = function (id) {
+        console.log(id);
+        console.log('Deleted!');
     }
 }]);

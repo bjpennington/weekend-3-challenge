@@ -28,6 +28,7 @@
                     <tr>
                         <th>Complete?</th>
                         <th>To-Do</th>
+                        <th>Delete?</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,9 @@
                         </td>
                         <td>
                             {{toDo.task}}
+                        </td>
+                        <td>
+                            <button ng-click="vm.deleteToDo(toDo._id)">Delete Task</button>
                         </td>
                     </tr>
                 </tbody>
