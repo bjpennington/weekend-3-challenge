@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    console.log('line 33 here is the req.body from frontend:', req.body);
+    console.log('line 33 here is the DELETE req.body from frontend:', req.body);
     ToDo.findByIdAndRemove({
         _id : req.params.id
     }).then((dataFromMongo) => {
@@ -38,6 +38,18 @@ router.delete('/:id', (req, res) => {
         res.sendStatus(202);
     }).catch((errFromMongo) => {
         console.log('line 40 /to-dos DELETE failed. Error:', errFromMongo);
+        res.sendStatus(500);
+    });
+});
+
+router.put('/:id', (req, res) => {
+    console.log('line 46 here is the PUT req.body from frontend:', req.body);
+    ToDo.findByIdAndUpdate(req.params.id, req.body)
+    .then((dataFromMongo) => {
+        console.log('Data returned from Mongo:', dataFromMongo);
+        res.sendStatus(201);
+    }).catch((errFromMongo) => {
+        console.log('line 52 PUT request failed Error:', errFromMongo);
         res.sendStatus(500);
     });
 });

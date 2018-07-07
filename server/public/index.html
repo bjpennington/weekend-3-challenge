@@ -28,16 +28,20 @@
                     <tr>
                         <th>Complete?</th>
                         <th>To-Do</th>
+                        <th>Complete Status</th>
                         <th>Delete?</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="toDo in vm.toDos">
                         <td>
-                            <button ng-click="vm.toggleCompleteToDo(toDo._id)">Mark as Complete</button>
+                            <button ng-click="vm.toggleCompleteToDo(toDo)">Mark as Complete</button>
                         </td>
                         <td>
                             {{toDo.task}}
+                        </td>
+                        <td>
+                            {{toDo.completeStatus}}
                         </td>
                         <td>
                             <button ng-click="vm.deleteToDo(toDo._id)">Delete Task</button>

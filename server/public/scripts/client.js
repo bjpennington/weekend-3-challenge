@@ -52,12 +52,21 @@ app.controller('ToDoController', ['$http', function ($http) {
         });
     }
 
-    self.toggleCompleteToDo = function (id) {
-        console.log(id);
+    self.toggleCompleteToDo = function (toDo) {
+        console.log(toDo);
+        toDo.completeStatus = !toDo.completeStatus;
+        console.log(toDo);
         console.log('toggle complete');
-        // $http({
-        //     url : `/to-dos/${id}`
-        // })
-        
+
+        $http({
+            url : `/to-dos/${toDo._id}`,
+            method : 'PUT',
+            data : toDo
+        }).then(function (response) {
+            console.log(response);
+            self.getToDos();
+        }).catch(function (error) {
+            console.log('Toggle complete failed. Error:', error);
+        });
     }
 }]);
