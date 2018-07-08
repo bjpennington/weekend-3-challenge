@@ -33,6 +33,7 @@ app.controller('ToDoController', ['$http', function ($http) {
         }).then(function (res) {
             console.log(res);
             self.getToDos();
+            self.newToDo = {};
         }).catch(function (err) {
             console.log('POST failed. Error:', err);
         });
@@ -41,15 +42,20 @@ app.controller('ToDoController', ['$http', function ($http) {
     self.deleteToDo = function (id) {
         console.log(id);
         console.log('Deleted!');
+
+        if (confirm('Are you sure you want to delete?')) {
+
         $http({
             url : `/to-dos/${id}`,
             method : 'DELETE',
         }).then(function (res) {
             console.log(res);
             self.getToDos();
+            alert('Task deleted!')
         }).catch(function (err) {
             console.log('DELETE failed. Error:', err);
         });
+    }
     }
 
     self.toggleCompleteToDo = function (toDo) {

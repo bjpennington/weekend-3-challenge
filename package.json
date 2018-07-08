@@ -21,7 +21,7 @@
   "dependencies": {
     "angular": "^1.7.2",
     "body-parser": "^1.18.3",
-    "cirrus-ui": "^0.5.4",
+    "bootstrap": "^4.1.1",
     "express": "^4.16.3",
     "mongoose": "^5.2.1"
   }
