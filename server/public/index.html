@@ -32,6 +32,9 @@
             </form>
         </div>
         <div>
+            <input id="filterInput" type="text" ng-model="filterInput.category" placeholder="Filter by category">
+        </div>
+        <div>
             <h3>To-Dos</h3>
             <table>
                 <thead>
@@ -43,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="toDo in vm.toDos" ng-class="{completeStatus: toDo.completeStatus}">
+                    <tr ng-repeat="toDo in vm.toDos | orderBy:'completeStatus' | filter : filterInput : strict" ng-class="{completeStatus: toDo.completeStatus}">
                         <td>
                             <button ng-click="vm.toggleCompleteToDo(toDo)">Mark as Complete</button>
                         </td>
