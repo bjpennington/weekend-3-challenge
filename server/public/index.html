@@ -14,7 +14,7 @@
 
 <body ng-app="ToDoApp" class="container-fluid">
     <div ng-controller="ToDoController as vm">
-        <header class="header">
+        <header class="jumbotron">
             <h1>To-Do List</h1>
         </header>
         <div class="row">
@@ -22,24 +22,25 @@
                 <div>
                     <h3>Create New To-Do</h3>
                     <form name="vm.newToDoForm">
-                    <fieldset class="form-group">
+                        <fieldset class="form-group">
                             <label for="taskDescription">What do you need to do?</label>
                             <br>
-                        <input type="text" placeholder="task description" name="taskDescription" ng-model="vm.newToDo.task" class="form-control" required />
-                        <br>
-                        <label for="Category">Category</label>
-                        <br>
-                        <select name="Category" ng-model="vm.newToDo.category" class="form-control custom-select">
-                            <option value="Moving">Moving</option>
-                            <option value="Finance">Finance</option>
-                            <option value="Personal">Personal</option>
-                            <option value="Work">Work</option>
-                        </select>
-                        <br>
-                        <!-- <span ng-show="vm.newToDoForm.taskDescription.$touched && vm.newToDoForm.taskDescription.$invalid">Task description is required.</span> -->
-                        <input type="submit" ng-click="vm.newToDoForm.taskDescription.$valid && vm.submitToDo(vm.newToDo)" value="Add It!" />
-                        <br>
-                        <fieldset>
+                            <input type="text" placeholder="task description" name="taskDescription" ng-model="vm.newToDo.task" class="form-control"
+                                required />
+                            <br>
+                            <label for="Category">Category</label>
+                            <br>
+                            <select name="Category" ng-model="vm.newToDo.category" class="form-control custom-select">
+                                <option value="Moving">Moving</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Work">Work</option>
+                            </select>
+                            <br>
+                            <!-- <span ng-show="vm.newToDoForm.taskDescription.$touched && vm.newToDoForm.taskDescription.$invalid">Task description is required.</span> -->
+                            <input type="submit" ng-click="vm.newToDoForm.taskDescription.$valid && vm.submitToDo(vm.newToDo)" value="Add It!" class="btn btn-success" />
+                            <br>
+                            <fieldset>
                     </form>
                 </div>
                 <div>
@@ -60,7 +61,7 @@
                     <tbody>
                         <tr ng-repeat="toDo in vm.toDos | orderBy:'completeStatus' | filter : filterInput : strict" ng-class="{'table-success': toDo.completeStatus}">
                             <td>
-                                <button ng-click="vm.toggleCompleteToDo(toDo)">Mark as Complete</button>
+                                <button ng-model="toDoComplete" ng-click="vm.toggleCompleteToDo(toDo)" ng-class="{'btn btn-outline-info': toDo.completeStatus, 'btn btn-info': !toDo.completeStatus}">Mark Completed</button>
                             </td>
                             <td>
                                 {{toDo.category}}
@@ -69,7 +70,7 @@
                                 {{toDo.task}}
                             </td>
                             <td>
-                                <button ng-click="vm.deleteToDo(toDo._id)">Delete Task</button>
+                                <button ng-click="vm.deleteToDo(toDo._id)" class="btn btn-danger">Delete Task</button>
                             </td>
                         </tr>
                     </tbody>

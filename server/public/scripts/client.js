@@ -54,7 +54,7 @@ app.controller('ToDoController', ['$http', function ($http) {
             }).then(function (res) {
                 console.log(res);
                 self.getToDos();
-                alert('Task deleted!')
+                alert('Task deleted!');
             }).catch(function (err) {
                 console.log('DELETE failed. Error:', err);
             });
