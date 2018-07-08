@@ -12,56 +12,69 @@
     <title>To-Do List</title>
 </head>
 
-<body ng-app="ToDoApp">
+<body ng-app="ToDoApp" class="container-fluid">
     <div ng-controller="ToDoController as vm">
-        <header>
+        <header class="header">
             <h1>To-Do List</h1>
         </header>
-        <div>
-            <h3>Create New To-Do</h3>
-            <form name="vm.newToDoForm">
-                <input type="text" placeholder="task description" name="taskDescription" ng-model="vm.newToDo.task" required />
-                <select name="Category" ng-model="vm.newToDo.category">
-                    <option value="Moving">Moving</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Personal">Personal</option>
-                    <option value="Work">Work</option>
-                  </select>
-                <!-- <span ng-show="vm.newToDoForm.taskDescription.$touched && vm.newToDoForm.taskDescription.$invalid">Task description is required.</span> -->
-                <input type="submit" ng-click="vm.newToDoForm.taskDescription.$valid && vm.submitToDo(vm.newToDo)" value="Add It!"/>
-            </form>
-        </div>
-        <div>
-            <input id="filterInput" type="text" ng-model="filterInput.category" placeholder="Filter by category">
-        </div>
-        <div>
-            <h3>To-Dos</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Complete?</th>
-                        <th>Category</th>
-                        <th>To-Do</th>
-                        <th>Delete?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="toDo in vm.toDos | orderBy:'completeStatus' | filter : filterInput : strict" ng-class="{completeStatus: toDo.completeStatus}">
-                        <td>
-                            <button ng-click="vm.toggleCompleteToDo(toDo)">Mark as Complete</button>
-                        </td>
-                        <td>
-                            {{toDo.category}}
-                        </td>
-                        <td>
-                            {{toDo.task}}
-                        </td>
-                        <td>
-                            <button ng-click="vm.deleteToDo(toDo._id)">Delete Task</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-3">
+                <div>
+                    <h3>Create New To-Do</h3>
+                    <form name="vm.newToDoForm">
+                    <fieldset class="form-group">
+                            <label for="taskDescription">What do you need to do?</label>
+                            <br>
+                        <input type="text" placeholder="task description" name="taskDescription" ng-model="vm.newToDo.task" class="form-control" required />
+                        <br>
+                        <label for="Category">Category</label>
+                        <br>
+                        <select name="Category" ng-model="vm.newToDo.category" class="form-control custom-select">
+                            <option value="Moving">Moving</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Work">Work</option>
+                        </select>
+                        <br>
+                        <!-- <span ng-show="vm.newToDoForm.taskDescription.$touched && vm.newToDoForm.taskDescription.$invalid">Task description is required.</span> -->
+                        <input type="submit" ng-click="vm.newToDoForm.taskDescription.$valid && vm.submitToDo(vm.newToDo)" value="Add It!" />
+                        <br>
+                        <fieldset>
+                    </form>
+                </div>
+                <div>
+                    <input id="filterInput" type="text" ng-model="filterInput.category" placeholder="Filter by category">
+                </div>
+            </div>
+            <div class="col-9">
+                <h3>To-Dos</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Complete?</th>
+                            <th>Category</th>
+                            <th>To-Do</th>
+                            <th>Delete?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="toDo in vm.toDos | orderBy:'completeStatus' | filter : filterInput : strict" ng-class="{'table-success': toDo.completeStatus}">
+                            <td>
+                                <button ng-click="vm.toggleCompleteToDo(toDo)">Mark as Complete</button>
+                            </td>
+                            <td>
+                                {{toDo.category}}
+                            </td>
+                            <td>
+                                {{toDo.task}}
+                            </td>
+                            <td>
+                                <button ng-click="vm.deleteToDo(toDo._id)">Delete Task</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </body>
