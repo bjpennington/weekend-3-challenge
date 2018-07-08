@@ -19,8 +19,11 @@
         </header>
         <div>
             <h3>Create New To-Do</h3>
-            <input type="text" placeholder="task description" ng-model="vm.newToDo.task">
-            <button ng-click="vm.submitToDo(vm.newToDo)">Add It!</button>
+            <form name="vm.newToDoForm">
+                <input type="text" placeholder="task description" name="taskDescription" ng-model="vm.newToDo.task" required />
+                <!-- <span ng-show="vm.newToDoForm.taskDescription.$touched && vm.newToDoForm.taskDescription.$invalid">Task description is required.</span> -->
+                <input type="submit" ng-click="vm.newToDoForm.taskDescription.$valid && vm.submitToDo(vm.newToDo)" value="Add It!"/>
+            </form>
         </div>
         <div>
             <h3>To-Dos</h3>

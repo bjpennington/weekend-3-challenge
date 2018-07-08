@@ -26,6 +26,9 @@ app.controller('ToDoController', ['$http', function ($http) {
     self.submitToDo = function (newToDo) {
         console.log('to do added');
         console.log(newToDo);
+        // if (self.newToDoForm.$invalid) {
+        //     return;
+        // }
         $http({
             url : '/to-dos',
             method : 'POST',
