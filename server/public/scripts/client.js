@@ -10,8 +10,8 @@ app.controller('ToDoController', ['$http', function ($http) {
 
     self.getToDos = function () {
         $http({
-            url : '/to-dos',
-            method : 'GET'
+            url: '/to-dos',
+            method: 'GET'
         }).then(function (res) {
             self.toDos = res.data;
             console.log(self.toDos);
@@ -30,9 +30,9 @@ app.controller('ToDoController', ['$http', function ($http) {
         //     return;
         // }
         $http({
-            url : '/to-dos',
-            method : 'POST',
-            data : newToDo
+            url: '/to-dos',
+            method: 'POST',
+            data: newToDo
         }).then(function (res) {
             console.log(res);
             self.getToDos();
@@ -48,17 +48,17 @@ app.controller('ToDoController', ['$http', function ($http) {
 
         if (confirm('Are you sure you want to delete?')) {
 
-        $http({
-            url : `/to-dos/${id}`,
-            method : 'DELETE',
-        }).then(function (res) {
-            console.log(res);
-            self.getToDos();
-            alert('Task deleted!')
-        }).catch(function (err) {
-            console.log('DELETE failed. Error:', err);
-        });
-    }
+            $http({
+                url: `/to-dos/${id}`,
+                method: 'DELETE',
+            }).then(function (res) {
+                console.log(res);
+                self.getToDos();
+                alert('Task deleted!')
+            }).catch(function (err) {
+                console.log('DELETE failed. Error:', err);
+            });
+        }
     }
 
     self.toggleCompleteToDo = function (toDo) {
@@ -68,9 +68,9 @@ app.controller('ToDoController', ['$http', function ($http) {
         console.log('toggle complete');
 
         $http({
-            url : `/to-dos/${toDo._id}`,
-            method : 'PUT',
-            data : toDo
+            url: `/to-dos/${toDo._id}`,
+            method: 'PUT',
+            data: toDo
         }).then(function (response) {
             console.log(response);
             self.getToDos();
@@ -78,4 +78,14 @@ app.controller('ToDoController', ['$http', function ($http) {
             console.log('Toggle complete failed. Error:', error);
         });
     }
+
+    // self.addNewCategory = function () {
+    //     let newCategory = prompt('New Category:');
+
+    //     if (newCategory == '') {
+    //         return;
+    //     } else {
+    //         return newCategory;
+    //     }
+    // }
 }]);

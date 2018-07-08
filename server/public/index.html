@@ -21,6 +21,12 @@
             <h3>Create New To-Do</h3>
             <form name="vm.newToDoForm">
                 <input type="text" placeholder="task description" name="taskDescription" ng-model="vm.newToDo.task" required />
+                <select name="Category" ng-model="vm.newToDo.category">
+                    <option value="Moving">Moving</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Work">Work</option>
+                  </select>
                 <!-- <span ng-show="vm.newToDoForm.taskDescription.$touched && vm.newToDoForm.taskDescription.$invalid">Task description is required.</span> -->
                 <input type="submit" ng-click="vm.newToDoForm.taskDescription.$valid && vm.submitToDo(vm.newToDo)" value="Add It!"/>
             </form>
@@ -31,6 +37,7 @@
                 <thead>
                     <tr>
                         <th>Complete?</th>
+                        <th>Category</th>
                         <th>To-Do</th>
                         <th>Delete?</th>
                     </tr>
@@ -39,6 +46,9 @@
                     <tr ng-repeat="toDo in vm.toDos" ng-class="{completeStatus: toDo.completeStatus}">
                         <td>
                             <button ng-click="vm.toggleCompleteToDo(toDo)">Mark as Complete</button>
+                        </td>
+                        <td>
+                            {{toDo.category}}
                         </td>
                         <td>
                             {{toDo.task}}
