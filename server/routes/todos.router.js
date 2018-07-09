@@ -1,57 +1,66 @@
+// bring in express and to-do schema
 const express = require('express');
 const ToDo = require('../models/todos.schema');
 
+// establish router
 const router = express.Router();
 
+// GET function for /to-dos
 router.get('/', (req, res) => {
-    console.log('line 7 got to /to-dos GET');
+    // pull all ToDo database data from mongo
     ToDo.find({}).then((dataFromMongo) => {
-        console.log('line 9', dataFromMongo);
+        // send all data to frontend
         res.send(dataFromMongo);
+        // capture and send error from mongo
     }).catch((errFromMongo) => {
-        console.log('line 12 catch error', errFromMongo);
+        console.log(errFromMongo);
         res.sendStatus(500);
     });
 });
 
+// POST function for /to-dos
 router.post('/', (req, res) => {
-    console.log('line 18 got to /to-dos POST');
-    console.log('line 18 toDo POST req.body is:', req.body);
-    
+    // create new variable based on to-do schema to house posted data from front end
     let newToDo = new ToDo(req.body);
-
+    // save new variable to mongo database
     newToDo.save().then((dataFromMongo) => {
-        console.log('line 24 POST data from mongo:', dataFromMongo);
+        // send 201 created status back to front end
         res.sendStatus(201);
+        // capture and send error from mongo
     }).catch((errFromMongo) => {
-        console.log('POST to mongo failed:', errFromMongo.message);
+        console.log(errFromMongo);
         res.sendStatus(500);
-    }); 
+    });
 });
 
+// DELETE function for /to-dos
 router.delete('/:id', (req, res) => {
-    console.log('line 33 here is the DELETE req.body from frontend:', req.body);
+    // search ToDo database for relevant id and remove from database
     ToDo.findByIdAndRemove({
-        _id : req.params.id
+        _id: req.params.id
+        // send 200 okay status back to front end
     }).then((dataFromMongo) => {
-        console.log('Data returned from Mongo:', dataFromMongo);
-        res.sendStatus(202);
+        res.sendStatus(200);
+        // caputre and send error from mongo
     }).catch((errFromMongo) => {
-        console.log('line 40 /to-dos DELETE failed. Error:', errFromMongo);
+        console.log(errFromMongo);
         res.sendStatus(500);
     });
 });
 
+// PUT function for /to-dos
 router.put('/:id', (req, res) => {
-    console.log('line 46 here is the PUT req.body from frontend:', req.body);
+    // search ToDo database for relevant id and update with data sent from front end
     ToDo.findByIdAndUpdate(req.params.id, req.body)
-    .then((dataFromMongo) => {
-        console.log('Data returned from Mongo:', dataFromMongo);
-        res.sendStatus(201);
-    }).catch((errFromMongo) => {
-        console.log('line 52 PUT request failed Error:', errFromMongo);
-        res.sendStatus(500);
-    });
+        // send 200 okay status back to front end
+        .then((dataFromMongo) => {
+            res.sendStatus(200);
+            // capture and send error from mongo
+        }).catch((errFromMongo) => {
+            console.log(errFromMongo);
+            res.sendStatus(500);
+        });
 });
 
+// export router
 module.exports = router;
