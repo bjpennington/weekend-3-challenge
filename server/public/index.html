@@ -39,15 +39,15 @@
                             <br>
                             <input type="submit" ng-click="vm.newToDoForm.taskDescription.$valid && vm.submitToDo(vm.newToDo)" value="Add It!" class="btn btn-success">
                             <br>
-                        <fieldset>
+                            <fieldset>
                     </form>
-                </div>
-                <div>
-                    <input id="filterInput" type="text" ng-model="filterInput.category" placeholder="Filter by category">
                 </div>
             </div>
             <div class="col-9">
                 <h3>To-Dos</h3>
+                <div>
+                    <input id="filterInput" type="text" ng-model="filterInput.category" placeholder="Filter by category" class="form-control">
+                </div>
                 <table class="table">
                     <thead>
                         <tr>
